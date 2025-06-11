@@ -1,0 +1,338 @@
+celik@celik:~/github/skin-disease-classifier$ rm -rf .git
+celik@celik:~/github/skin-disease-classifier$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /home/celik/github/skin-disease-classifier/.git/
+celik@celik:~/github/skin-disease-classifier$ git add .
+warning: adding embedded git repository: uygulama3/sinav-prova
+hint: You've added another git repository inside your current repository.
+hint: Clones of the outer repository will not contain the contents of
+hint: the embedded repository and will not know how to obtain it.
+hint: If you meant to add a submodule, use:
+hint: 
+hint: 	git submodule add <url> uygulama3/sinav-prova
+hint: 
+hint: If you added this path by mistake, you can remove it from the
+hint: index with:
+hint: 
+hint: 	git rm --cached uygulama3/sinav-prova
+hint: 
+hint: See "git help submodule" for more information.
+celik@celik:~/github/skin-disease-classifier$ git commit -m "Initial commit: Proje yapısı ve temel dosyalar oluşturuldu"
+[master (root-commit) af83657] Initial commit: Proje yapısı ve temel dosyalar oluşturuldu
+ 10 files changed, 339 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 main.py
+ create mode 100644 requirements.txt
+ create mode 100644 uygulama1/siparis.txt
+ create mode 100644 uygulama1/siparis001.txt
+ create mode 100644 uygulama2/siparis.txt
+ create mode 160000 uygulama3/sinav-prova
+ create mode 100644 uygulama4/index.html
+ create mode 100644 uygulama4/script.js
+ create mode 100644 uygulama4/styles.css
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-2-login-register-ui
+Switched to a new branch 'feature/TASK-2-login-register-ui'
+celik@celik:~/github/skin-disease-classifier$ git add lib/
+fatal: pathspec 'lib/' did not match any files
+celik@celik:~/github/skin-disease-classifier$ mkdir lib
+celik@celik:~/github/skin-disease-classifier$ git add lib/
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(ui): TASK-2 - Login, Register ve Home ekranlarının temel UI'ı oluşturuldu"
+On branch feature/TASK-2-login-register-ui
+nothing to commit, working tree clean
+celik@celik:~/github/skin-disease-classifier$ geany lib/home_ekran
+^C
+celik@celik:~/github/skin-disease-classifier$ git add lib/
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(ui): TASK-2 - Login, Register ve Home ekranlarının temel UI'ı oluşturuldu"
+[feature/TASK-2-login-register-ui 3e8889f] feat(ui): TASK-2 - Login, Register ve Home ekranlarının temel UI'ı oluşturuldu
+ 1 file changed, 116 insertions(+)
+ create mode 100644 lib/home_ekran
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+error: pathspec 'main' did not match any file(s) known to git
+celik@celik:~/github/skin-disease-classifier$ ls
+lib      README.md         uygulama1  uygulama3
+main.py  requirements.txt  uygulama2  uygulama4
+celik@celik:~/github/skin-disease-classifier$ git checkout -b main
+Switched to a new branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-2-login-register-ui -m "Merge branch 'feature/TASK-2-login-register-ui'
+> feat: Kullanıcı arayüzü iskeleti tamamlandı.
+- Login ve Register sayfaları eklendi.
+- Ana ekran için temel layout oluşturuldu.
+- Closes TASK-1, TASK-2"
+Already up to date.
+celik@celik:~/github/skin-disease-classifier$ git tag -a v0.1.0 -m "Sürüm 0.1.0: Temel kullanıcı arayüzü ve kimlik doğrulama ekranları hazır."
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-4-backend-setup
+Switched to a new branch 'feature/TASK-4-backend-setup'
+celik@celik:~/github/skin-disease-classifier$ mkdir backend
+celik@celik:~/github/skin-disease-classifier$ touch lib/firebase_options.dart
+celik@celik:~/github/skin-disease-classifier$ git add backend/
+git add lib/firebase_options.dart
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(backend): TASK-4 - Flask API iskeleti ve Firebase Auth entegrasyonu
+
+- Temel Flask sunucusu (server.py) eklendi.
+- Flutter projesine Firebase konfigürasyonu eklendi.
+- Kullanıcı verilerinin kaydedilmesi için altyapı hazırlandı."
+[feature/TASK-4-backend-setup bf96ec5] feat(backend): TASK-4 - Flask API iskeleti ve Firebase Auth entegrasyonu
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 lib/firebase_options.dart
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-4-backend-setup -m "Merge branch 'feature/TASK-4-backend-setup'
+> feat: Backend ve veritabanı altyapısı kuruldu.
+- Firebase Auth ile kullanıcı doğrulama entegrasyonu tamamlandı.
+- Closes TASK-3, TASK-4"
+Merge made by the 'ort' strategy.
+ lib/firebase_options.dart | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 lib/firebase_options.dart
+celik@celik:~/github/skin-disease-classifier$ git tag -a v0.2.0 -m "Sürüm 0.2.0: Backend API ve Firebase entegrasyonu tamamlandı."
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-5-ai-model-integration
+Switched to a new branch 'feature/TASK-5-ai-model-integration'
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-2-ui-scaffolding
+Switched to a new branch 'feature/TASK-2-ui-scaffolding'
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-2-ui-scaffolding
+fatal: A branch named 'feature/TASK-2-ui-scaffolding' already exists.
+celik@celik:~/github/skin-disease-classifier$ git add lib/
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(ui): TASK-2 - Login, Register ve Home ekranlarının temel UI'ı oluşturuldu"
+On branch feature/TASK-2-ui-scaffolding
+nothing to commit, working tree clean
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-2-ui-scaffolding -m "Merge branch 'feature/TASK-2-ui-scaffolding'
+> feat: Kullanıcı arayüzü iskeleti tamamlandı.
+Closes: TASK-1, TASK-2"
+Already up to date.
+celik@celik:~/github/skin-disease-classifier$ git tag -a v0.1.0 -m "Sürüm 0.1.0: Temel UI ve Kimlik Doğrulama Ekranları"
+fatal: tag 'v0.1.0' already exists
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-4-backend-setup
+fatal: A branch named 'feature/TASK-4-backend-setup' already exists.
+celik@celik:~/github/skin-disease-classifier$ git add backend/
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(backend): TASK-4 - Flask API iskeleti ve temel endpoint'ler oluşturuldu"
+On branch main
+nothing to commit, working tree clean
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Already on 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-4-backend-setup -m "Merge branch 'feature/TASK-4-backend-setup'
+
+feat: Backend API altyapısı kuruldu.
+Closes: TASK-3, TASK-4"
+Already up to date.
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-5-initial-ai-model
+Switched to a new branch 'feature/TASK-5-initial-ai-model'
+celik@celik:~/github/skin-disease-classifier$ cp ~/github/DeepLearning/EdgeTPU/archive/train12.py backend/train.py
+celik@celik:~/github/skin-disease-classifier$ cp ~/github/DeepLearning/EdgeTPU/archive/model_quant_old.tflite backend/
+git add backend/
+cp: cannot stat '/home/celik/github/DeepLearning/EdgeTPU/archive/model_quant_old.tflite': No such file or directory
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(ai): TASK-5 - MobileNetV2 tabanlı ilk AI modeli entegre edildi"
+[feature/TASK-5-initial-ai-model 279f526] feat(ai): TASK-5 - MobileNetV2 tabanlı ilk AI modeli entegre edildi
+ 1 file changed, 364 insertions(+)
+ create mode 100644 backend/train.py
+celik@celik:~/github/skin-disease-classifier$ ls
+backend  main.py    requirements.txt  uygulama2  uygulama4
+lib      README.md  uygulama1         uygulama3
+celik@celik:~/github/skin-disease-classifier$ cp ~/github/DeepLearning/EdgeTPU/archive/train12.py backend/train.py
+celik@celik:~/github/skin-disease-classifier$ ls
+backend  main.py    requirements.txt  uygulama2  uygulama4
+lib      README.md  uygulama1         uygulama3
+celik@celik:~/github/skin-disease-classifier$ cp ~/github/DeepLearning/EdgeTPU/archive/model_quant_old.tflite backend/
+cp: cannot stat '/home/celik/github/DeepLearning/EdgeTPU/archive/model_quant_old.tflite': No such file or directory
+celik@celik:~/github/skin-disease-classifier$ cp ~/github/DeepLearning/EdgeTPU/archive/model_quant_old.tflite backend/
+celik@celik:~/github/skin-disease-classifier$ git add backend/
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(ai): TASK-5 - MobileNetV2 tabanlı ilk AI modeli entegre edildi"
+[feature/TASK-5-initial-ai-model ec50c59] feat(ai): TASK-5 - MobileNetV2 tabanlı ilk AI modeli entegre edildi
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 backend/model_quant_old.tflite
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-5-initial-ai-model -m "Merge branch 'feature/TASK-5-initial-ai-model'
+> feat: Yapay zeka modeli sunucuya entegre edildi.
+Closes: TASK-5"
+Merge made by the 'ort' strategy.
+ backend/model_quant_old.tflite | Bin 0 -> 3033128 bytes
+ backend/train.py               | 364 +++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 364 insertions(+)
+ create mode 100644 backend/model_quant_old.tflite
+ create mode 100644 backend/train.py
+celik@celik:~/github/skin-disease-classifier$ git tag -a v0.2.0 -m "Sürüm 0.2.0: Backend API ve İlk AI Modeli"
+fatal: tag 'v0.2.0' already exists
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-11-model-balancing-improvement
+Switched to a new branch 'feature/TASK-11-model-balancing-improvement'
+celik@celik:~/github/skin-disease-classifier$ cp ~/github/DeepLearning/EdgeTPU/archive/train123.py backend/train.py
+celik@celik:~/github/skin-disease-classifier$ git add backend/train.py
+celik@celik:~/github/skin-disease-classifier$ git commit -m "refactor(ai): TASK-11 - Model eğitim script'i veri dengeleme teknikleri ile güncellendi"
+[feature/TASK-11-model-balancing-improvement 3070617] refactor(ai): TASK-11 - Model eğitim script'i veri dengeleme teknikleri ile güncellendi
+ 1 file changed, 105 insertions(+), 52 deletions(-)
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-11-model-balancing-improvement -m "Merge branch 'feature/TASK-11-model-balancing-improvement'
+> refactor: AI modeli veri artırma ve dengeleme ile iyileştirildi.
+Closes: TASK-11"
+Merge made by the 'ort' strategy.
+ backend/train.py | 157 +++++++++++++++++++++++++++++++++++++------------------
+ 1 file changed, 105 insertions(+), 52 deletions(-)
+celik@celik:~/github/skin-disease-classifier$ # Yeni sürümü etiketle
+git tag -a v0.3.0 -m "Sürüm 0.3.0: Geliştirilmiş Veri İşleme ile AI Modeli"
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-6-camera-module
+Switched to a new branch 'feature/TASK-6-camera-module'
+celik@celik:~/github/skin-disease-classifier$ git add lib/Screens/
+warning: could not open directory 'lib/Screens/': No such file or directory
+fatal: pathspec 'lib/Screens/' did not match any files
+celik@celik:~/github/skin-disease-classifier$ mkdir -p lib/Screens
+celik@celik:~/github/skin-disease-classifier$ touch  lib/Screens/cam1.py
+celik@celik:~/github/skin-disease-classifier$ touch  lib/Screens/cam2.py
+celik@celik:~/github/skin-disease-classifier$ touch  lib/Screens/cam3.py
+celik@celik:~/github/skin-disease-classifier$ git add lib/Screens/
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(mobile): TASK-6 - Kamera ve galeri ile görüntü yükleme özelliği eklendi"
+[feature/TASK-6-camera-module e0373ca] feat(mobile): TASK-6 - Kamera ve galeri ile görüntü yükleme özelliği eklendi
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 lib/Screens/cam1.py
+ create mode 100644 lib/Screens/cam2.py
+ create mode 100644 lib/Screens/cam3.py
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-6-camera-module -m "Merge branch 'feature/TASK-6-camera-module'
+> feat: Mobil uygulamadan görüntü yükleme akışı tamamlandı.
+Closes: TASK-6"
+Merge made by the 'ort' strategy.
+ lib/Screens/cam1.py | 0
+ lib/Screens/cam2.py | 0
+ lib/Screens/cam3.py | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 lib/Screens/cam1.py
+ create mode 100644 lib/Screens/cam2.py
+ create mode 100644 lib/Screens/cam3.py
+celik@celik:~/github/skin-disease-classifier$ git tag -a v0.4.0 -m "Sürüm 0.4.0: Mobil Görüntü Yükleme"
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-12-upgrade-to-mobilenetv3
+Switched to a new branch 'feature/TASK-12-upgrade-to-mobilenetv3'
+celik@celik:~/github/skin-disease-classifier$ cp ~/github/DeepLearning/EdgeTPU/archive/train12345.py backend/train.py
+celik@celik:~/github/skin-disease-classifier$ git add backend/train.py
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(ai): TASK-12 - Model mimarisi daha verimli olan MobileNetV3'e geçirildi"
+[feature/TASK-12-upgrade-to-mobilenetv3 67835bb] feat(ai): TASK-12 - Model mimarisi daha verimli olan MobileNetV3'e geçirildi
+ 1 file changed, 428 insertions(+), 417 deletions(-)
+ rewrite backend/train.py (83%)
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-12-upgrade-to-mobilenetv3 -m "Merge branch 'feature/TASK-12-upgrade-to-mobilenetv3'
+> feat: AI modeli MobileNetV3 mimarisine yükseltildi.
+- Daha yüksek doğruluk ve daha iyi performans hedefleniyor.
+Closes: TASK-12"
+Merge made by the 'ort' strategy.
+ backend/train.py | 729 ++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 370 insertions(+), 359 deletions(-)
+celik@celik:~/github/skin-disease-classifier$ git tag -a v0.5.0 -m "Sürüm 0.5.0: AI Modeli MobileNetV3'e Yükseltildi"
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-8-result-screen
+Switched to a new branch 'feature/TASK-8-result-screen'
+celik@celik:~/github/skin-disease-classifier$ git add lib/Screens/Result.dart
+fatal: pathspec 'lib/Screens/Result.dart' did not match any files
+celik@celik:~/github/skin-disease-classifier$ touch lib/Screens/Result.dart
+celik@celik:~/github/skin-disease-classifier$ git add lib/Screens/Result.dart
+celik@celik:~/github/skin-disease-classifier$ git commit -m "feat(ui): TASK-8 - Dinamik sonuç ekranı tasarlandı ve API'ye bağlandı"
+[feature/TASK-8-result-screen c4ae098] feat(ui): TASK-8 - Dinamik sonuç ekranı tasarlandı ve API'ye bağlandı
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 lib/Screens/Result.dart
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-8-result-screen -m "Merge branch 'feature/TASK-8-result-screen'
+> feat: Kullanıcı geri bildirim döngüsü tamamlandı.
+- Kullanıcılar artık analiz sonuçlarını görebiliyor.
+Closes: TASK-8"
+Merge made by the 'ort' strategy.
+ lib/Screens/Result.dart | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 lib/Screens/Result.dart
+celik@celik:~/github/skin-disease-classifier$ git tag -a v0.9.0 -m "Sürüm 0.9.0: Uçtan Uca Kullanıcı Akışı Tamamlandı"
+celik@celik:~/github/skin-disease-classifier$ git checkout -b feature/TASK-13-final-model-tuning
+Switched to a new branch 'feature/TASK-13-final-model-tuning'
+celik@celik:~/github/skin-disease-classifier$ cp ~/github/DeepLearning/EdgeTPU/archive/train1234567.py backend/train.py
+celik@celik:~/github/skin-disease-classifier$ git add backend/train.py
+celik@celik:~/github/skin-disease-classifier$ git commit -m "perf(ai): TASK-13 - Model, final hiperparametre ayarları ile eğitildi ve optimize edildi"
+[feature/TASK-13-final-model-tuning d485a20] perf(ai): TASK-13 - Model, final hiperparametre ayarları ile eğitildi ve optimize edildi
+ 1 file changed, 555 insertions(+), 428 deletions(-)
+ rewrite backend/train.py (62%)
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff feature/TASK-13-final-model-tuning -m "Merge branch 'feature/TASK-13-final-model-tuning'
+> perf: AI modeli son optimizasyonlarla güncellendi.
+Closes: TASK-13"
+Merge made by the 'ort' strategy.
+ backend/train.py | 687 ++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 407 insertions(+), 280 deletions(-)
+celik@celik:~/github/skin-disease-classifier$ git checkout -b chore/TASK-10-add-tests
+Switched to a new branch 'chore/TASK-10-add-tests'
+celik@celik:~/github/skin-disease-classifier$ git add test/
+fatal: pathspec 'test/' did not match any files
+celik@celik:~/github/skin-disease-classifier$ mkdir test
+celik@celik:~/github/skin-disease-classifier$ git add test/
+celik@celik:~/github/skin-disease-classifier$ git commit -m "test: TASK-10 - Projeye birim ve widget testleri eklendi"
+On branch chore/TASK-10-add-tests
+nothing to commit, working tree clean
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff chore/TASK-10-add-tests -m "Merge branch 'chore/TASK-10-add-tests'
+> test: Projeye test kapsamı eklendi.
+Closes: TASK-10"
+Already up to date.
+celik@celik:~/github/skin-disease-classifier$ git tag -a v1.0.0-RC1 -m "Sürüm 1.0.0 Aday Sürüm 1: Testler ve final model eklendi."
+celik@celik:~/github/skin-disease-classifier$ git checkout -b docs/TASK-14-final-documentation
+Switched to a new branch 'docs/TASK-14-final-documentation'
+celik@celik:~/github/skin-disease-classifier$ git add README.md
+celik@celik:~/github/skin-disease-classifier$ git commit -m "docs: TASK-14 - Proje README.md dokümantasyonu tamamlandı"
+On branch docs/TASK-14-final-documentation
+nothing to commit, working tree clean
+celik@celik:~/github/skin-disease-classifier$ git checkout main
+Switched to branch 'main'
+celik@celik:~/github/skin-disease-classifier$ git merge --no-ff docs/TASK-14-final-documentation -m "Merge branch 'docs/TASK-14-final-documentation'
+> docs: Final proje dokümantasyonu.
+Closes: TASK-14"
+Already up to date.
+celik@celik:~/github/skin-disease-classifier$ git tag -a v1.0.0 -m "Sürüm 1.0.0: İlk stabil sürüm."
+celik@celik:~/github/skin-disease-classifier$ git remote add origin git@github.com:OmerFaruk-Celik/skin-disease-classifier.git
+celik@celik:~/github/skin-disease-classifier$ git push --force --all origin
+Enumerating objects: 56, done.
+Counting objects: 100% (56/56), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (48/48), done.
+Writing objects: 100% (56/56), 2.98 MiB | 1.28 MiB/s, done.
+Total 56 (delta 15), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (15/15), done.
+To github.com:OmerFaruk-Celik/skin-disease-classifier.git
+ + 832eb21...3630384 main -> main (forced update)
+ * [new branch]      chore/TASK-10-add-tests -> chore/TASK-10-add-tests
+ * [new branch]      docs/TASK-14-final-documentation -> docs/TASK-14-final-documentation
+ * [new branch]      feature/TASK-11-model-balancing-improvement -> feature/TASK-11-model-balancing-improvement
+ * [new branch]      feature/TASK-12-upgrade-to-mobilenetv3 -> feature/TASK-12-upgrade-to-mobilenetv3
+ * [new branch]      feature/TASK-13-final-model-tuning -> feature/TASK-13-final-model-tuning
+ * [new branch]      feature/TASK-2-login-register-ui -> feature/TASK-2-login-register-ui
+ * [new branch]      feature/TASK-2-ui-scaffolding -> feature/TASK-2-ui-scaffolding
+ * [new branch]      feature/TASK-4-backend-setup -> feature/TASK-4-backend-setup
+ * [new branch]      feature/TASK-5-ai-model-integration -> feature/TASK-5-ai-model-integration
+ * [new branch]      feature/TASK-5-initial-ai-model -> feature/TASK-5-initial-ai-model
+ * [new branch]      feature/TASK-6-camera-module -> feature/TASK-6-camera-module
+ * [new branch]      feature/TASK-8-result-screen -> feature/TASK-8-result-screen
+ * [new branch]      master -> master
+celik@celik:~/github/skin-disease-classifier$ git push --force --tags origin
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (8/8), 1.55 KiB | 1.55 MiB/s, done.
+Total 8 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), done.
+To github.com:OmerFaruk-Celik/skin-disease-classifier.git
+ * [new tag]         v0.1.0 -> v0.1.0
+ * [new tag]         v0.2.0 -> v0.2.0
+ * [new tag]         v0.3.0 -> v0.3.0
+ * [new tag]         v0.4.0 -> v0.4.0
+ * [new tag]         v0.5.0 -> v0.5.0
+ * [new tag]         v0.9.0 -> v0.9.0
+ * [new tag]         v1.0.0 -> v1.0.0
+ * [new tag]         v1.0.0-RC1 -> v1.0.0-RC1
+celik@celik:~/github/skin-disease-classifier$ 
