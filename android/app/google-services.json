@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "634361672473",
+    "project_id": "cilthastaliklari-2ef11",
+    "storage_bucket": "cilthastaliklari-2ef11.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634361672473:android:3a1b750ed5a045e6104b88",
+        "android_client_info": {
+          "package_name": "com.example.test3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArhVmiqCF9BoNVWIK0uUYPXAdemKFSsys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
