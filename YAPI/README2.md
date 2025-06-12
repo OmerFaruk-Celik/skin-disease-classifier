@@ -1,12 +1,13 @@
 Proje Geliştirme Süreci ve Git Flow Dal Yönetimi
-Bu doküman, projenin geliştirme sürecini, Git Flow dal stratejisini, Jira görevleriyle ilişkilerini ve kullanılan Git komutlarını özetler. Her dal, belirli bir özelliği veya sürümü temsil eder ve Jira epik/task’leriyle eşleştirilmiştir. Proje, Flutter ile mobil uygulama, Flask ile backend ve yapay zeka modeli entegrasyonunu içerir.
+Bu doküman, Flutter tabanlı bir mobil uygulama ve Flask ile geliştirilmiş bir backend içeren projemizin geliştirme sürecini ve Git Flow dal stratejisini açıklar. Her dal, Jira’daki epik ve görevlerle (story/task) ilişkilendirilmiştir. Proje, kullanıcı arayüzü (UI), backend altyapısı, yapay zeka modeli entegrasyonu ve kamera modülü gibi bileşenleri içerir. Aşağıda, her dalın amacı, sözlü sınav için açıklamalar, ilgili dosyalar ve Git komutları detaylı bir şekilde sunulmuştur.
 Git Flow Stratejisi
-Projemiz, Git Flow iş akışına uygun olarak yönetilmiştir. Kullanılan dallar:
+Projemiz, Git Flow dal yönetimine uygun olarak geliştirilmiştir. Kullanılan dallar:
 
-main: Üretim ortamına hazır, stabil sürümler.
-develop: Geliştirme ortamındaki en güncel kodlar.
-feature/: Yeni özellikler için geçici dallar.
-release/: Sürüm yayınlamadan önce son düzenlemeler için dallar.
+main: Üretim ortamına hazır, stabil sürümler. Yalnızca release veya hotfix dallarından gelen birleştirmeler kabul edilir.
+develop: Geliştirme ortamındaki en güncel kodlar. Tüm feature dalları buraya birleştirilir.
+feature/: Yeni özellikler için geçici dallar (ör. feature/TASK-2-ui-scaffolding). Geliştirme tamamlanınca develop’a birleştirilir.
+release/: Sürüm yayınlamadan önce son düzenlemeler için dallar (ör. release/v1.0.0). Tamamlanınca main ve develop’a birleştirilir.
+hotfix/: Üretimde acil hata düzeltmeleri için (bu projede kullanılmadı).
 
 Dal: feature/TASK-2-ui-scaffolding
 Jira Karşılığı:
@@ -14,7 +15,7 @@ Jira Karşılığı:
 Epik: Kullanıcı Arayüzü (UI) Geliştirme
 Story/Task: TASK-1, TASK-2 (Ana ekran ve temel sayfa yapılarının oluşturulması)
 
-Açıklama (Hocanıza Söyleyecekleriniz):"Hocam, bu dalda projenin frontend temelini attık. Kullanıcının uygulamayı açtığında göreceği Login, Register ve Home ekranlarının görsel iskeletini Flutter ile kodladık. StatelessWidget ve StatefulWidget kullanarak, henüz işlevsel olmayan ama tasarım olarak tamamlanmış arayüzler hazırladık. Bu, projenin kullanıcı arayüzü için ilk adımdı."
+Açıklama (Hocanıza Söyleyecekleriniz):"Hocam, bu dalda projenin kullanıcı arayüzünün temelini oluşturduk. Flutter kullanarak Login, Register ve Home ekranlarının görsel iskeletini kodladık. StatelessWidget ve StatefulWidget’larla, henüz işlevsel olmayan ama tasarım açısından tamamlanmış arayüzler hazırladık. Bu, projenin frontend tarafındaki ilk adımdı ve kullanıcı deneyimi için temel oluşturdu."
 İlgili Dosyalar:
 
 lib/Screens/Login.dart
@@ -41,7 +42,7 @@ Jira Karşılığı:
 Epik: Veritabanı ve Backend Altyapısı / Yapay Zeka Model Entegrasyonu
 Story/Task: TASK-3, TASK-4, TASK-5
 
-Açıklama (Hocanıza Söyleyecekleriniz):"Bu dalda, projenin backend altyapısını kurduk. Flask ile REST API’sini (server.py) oluşturduk ve kullanıcı kimlik doğrulaması için Firebase’ı entegre ettik. Ayrıca, daha önce eğittiğimiz ilk yapay zeka modelini (.tflite formatında) API’ye ekledik. /images endpoint’i üzerinden basit tahminler yapabilen bir sistem kurduk."
+Açıklama (Hocanıza Söyleyecekleriniz):"Bu dalda, projenin backend altyapısını kurduk. Python ve Flask ile server.py dosyasını oluşturarak REST API’yi hayata geçirdik. Kullanıcı kimlik doğrulaması için Firebase’ı entegre ettik ve Flutter tarafında gerekli yapılandırmayı yaptık. Ayrıca, train.py ile eğittiğimiz ilk yapay zeka modelini (.tflite formatında) API’ye ekledik. /images endpoint’i üzerinden basit tahminler yapabilen bir sistem kurduk."
 İlgili Dosyalar:
 
 backend/server.py
@@ -68,7 +69,7 @@ Jira Karşılığı:
 Epik: Yapay Zeka Model Entegrasyonu
 Story/Task: TASK-11 (Modelin veri dengeleme ile iyileştirilmesi)
 
-Açıklama (Hocanıza Söyleyecekleriniz):"İlk modelimizin sınıf dengesizliği nedeniyle düşük performans gösterdiğini fark ettik. Bu dalda, train.py script’ini veri artırma (augmentation) ve sınıf ağırlıklandırma (class weights) teknikleriyle güncelledik. Böylece modelimiz daha adil ve doğru tahminler yapar hale geldi. Bu, önemli bir refactor işlemiydi."
+Açıklama (Hocanıza Söyleyecekleriniz):"İlk modelimizin performansını analiz ettiğimizde, veri setindeki sınıf dengesizliğinin sonuçları olumsuz etkilediğini fark ettik. Bu dalda, train.py script’ini veri artırma (augmentation) ve sınıf ağırlıklandırma (class weights) teknikleriyle güncelledik. Bu refactor işlemi, modelin doğruluğunu artırarak daha adil tahminler yapmasını sağladı."
 İlgili Dosyalar:
 
 backend/train.py (güncellenmiş hali)
@@ -93,7 +94,7 @@ Jira Karşılığı:
 Epik: Görüntü İşleme ve Girdi Toplama
 Story/Task: TASK-6 (Kamera modülü ile görsel veri elde edilmesi)
 
-Açıklama (Hocanıza Söyleyecekleriniz):"Bu dalda, mobil uygulama ile backend arasındaki bağlantıyı kurduk. Flutter’da image_picker paketini kullanarak CameraScanUI ve GaleriScanUI arayüzlerini geliştirdik. Kullanıcı, kamerayla fotoğraf çekip veya galerisinden seçim yaparak backend’e HTTP POST ile veri gönderiyor. Bu, uygulamanın görsel veri toplama işlevini sağladı."
+Açıklama (Hocanıza Söyleyecekleriniz):"Bu dalda, mobil uygulama ile backend arasındaki bağlantıyı kurduk. Flutter’da image_picker paketini kullanarak CameraScanUI ve GaleriScanUI arayüzlerini geliştirdik. Kullanıcı, telefonun kamerasıyla fotoğraf çekebilir veya galerisinden bir resim seçebilir. Seçilen görüntüler, http paketiyle backend’teki /images endpoint’ine POST isteğiyle gönderiliyor. Bu, uygulamanın görsel veri toplama işlevini sağladı."
 İlgili Dosyalar:
 
 lib/Screens/Camera.dart
@@ -119,7 +120,7 @@ Jira Karşılığı:
 Epik: Yapay Zeka Model Entegrasyonu
 Story/Task: TASK-12 (Model mimarisinin MobileNetV3’e yükseltilmesi)
 
-Açıklama (Hocanıza Söyleyecekleriniz):"Daha iyi performans için model mimarimizi MobileNetV3Large’e yükselttik. Bu dalda, train.py script’ini bu modern ve verimli mimariyi kullanacak şekilde güncelledik. Bu değişiklik, modelin doğruluğunu ve çıkarım hızını artırdı, özellikle mobil cihazlar için optimize edildi."
+Açıklama (Hocanıza Söyleyecekleriniz):"Modelimizin performansını artırmak için daha modern bir mimariye geçtik. Bu dalda, train.py script’ini MobileNetV3Large mimarisini kullanacak şekilde güncelledik. Bu değişiklik, modelin doğruluğunu artırdı ve özellikle mobil cihazlar için çıkarım hızını optimize etti. MobileNetV3’ün hafif ve verimli yapısı, projemize büyük katkı sağladı."
 İlgili Dosyalar:
 
 backend/train.py (MobileNetV3 versiyonu)
@@ -144,11 +145,11 @@ Jira Karşılığı:
 Epik: Kullanıcı Geri Bildirimi / Test ve Hata Ayıklama
 Story/Task: TASK-8, TASK-9, TASK-15, TASK-16
 
-Açıklama (Hocanıza Söyleyecekleriniz):"Projenin final aşamasında, ilk stabil sürümü (v1.0.0) hazırlamak için release dalı açtık. Backend’de server.py’ye try-except blokları ve loglama ekleyerek API’yi sağlamlaştırdık. Flutter’da ResultScreen, kullanıcı profili ve tüm arayüzleri tamamlayarak uygulamayı kullanıcı dostu hale getirdik. Ayrıca README.md’yi güncelledik. Bu dal, projenin uçtan uca çalıştığı stabil sürümü temsil ediyor."
+Açıklama (Hocanıza Söyleyecekleriniz):"Hocam, bu dalda projenin ilk stabil sürümünü (v1.0.0) hazırladık. Backend’de server.py’ye try-except blokları ve loglama ekleyerek API’yi daha sağlam hale getirdik. Flutter’da ResultScreen, kullanıcı profili ve tüm arayüzleri son tasarımlarıyla tamamladık. Ayrıca, proje dokümantasyonunu (README.md) güncelledik. Bu dal, TASK-15 (backend finalizasyonu) ve TASK-16 (Flutter finalizasyonu) görevlerini birleştirerek uçtan uca çalışan, kullanıcı dostu bir uygulama ortaya çıkardı."
 İlgili Dosyalar:
 
 backend/server.py
-lib/ altındaki tüm dosyalar
+lib/ altındaki tüm dosyalar (ör. lib/Screens/ResultScreen.dart, lib/Screens/Profile.dart)
 README.md
 
 Git Komutları:
@@ -163,5 +164,15 @@ git commit -m "feat!: TASK-15, TASK-16 - Backend ve Flutter son hali tamamlandı
 # 3. main ve develop dallarına birleştir
 git checkout main
 git merge --no-ff release/v1.0.0
-git tag -a v1.0.0 -m "Sürüm 1.0.0: İlk
+git tag -a v1.0.0 -m "Sürüm 1.0.0: İlk Stabil Sürüm"
+git checkout develop
+git merge --no-ff release/v1.0.0
+git branch -d release/v1.0.0
+
+Notlar
+
+Git Flow Uyumluluğu: Tüm feature dalları develop’a birleştirildi. release/v1.0.0 dalı, hem main hem develop’a birleştirilerek stabil sürüm yayınlandı.
+Jira Entegrasyonu: Her dal, ilgili epik ve görevlerle eşleştirildi, böylece proje yönetimi şeffaf hale geldi.
+Sürüm Yönetimi: Her önemli aşama (v0.1.0’dan v1.0.0’a) etiketlendi, ancak sadece v1.0.0 main dalına yansıdı.
+Teknolojiler: Flutter (UI ve kamera), Flask (REST API), Firebase (kimlik doğrulama), TensorFlow (AI modeli), MobileNetV3 (gelişmiş AI mimarisi).
 
